@@ -15,3 +15,5 @@
  - Ludwig（Uber）
  - Neural Network Intelligence（Microsoft）
  - Model Search（Google）
+
+![logos](logos.png) 

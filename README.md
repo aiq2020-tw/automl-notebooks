@@ -13,3 +13,7 @@ The OSS introduced in this series is as follows:
  - Ludwig（Uber）
  - Neural Network Intelligence（Microsoft）
  - Model Search（Google）
+
+![logos](logos.png) 
+
+[Click here if you understand Japanese.](https://github.com/aiq2020-tw/automl-notebooks/blob/main/README.jp.md)

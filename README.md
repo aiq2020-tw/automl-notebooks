@@ -7,7 +7,7 @@
 この連載で紹介するOSSは以下です。
 
  - [auto-sklearn](https://github.com/aiq2020-tw/automl-notebooks/blob/main/02_auto-sklearn/auto-sklearn_Titanic.ipynb)
- - TPOT
+ - [TPOT](https://github.com/aiq2020-tw/automl-notebooks/blob/main/03_TPOT/TPOT_Titanic.ipynb)
  - AutoGluon（Amazon）
  - H2O（H2O.ai）
  - PyCaret

@@ -9,12 +9,12 @@
  - [auto-sklearn](https://github.com/aiq2020-tw/automl-notebooks/tree/main/02_auto-sklearn)
  - [TPOT](https://github.com/aiq2020-tw/automl-notebooks/tree/main/03_TPOT)
  - [AutoGluon（Amazon）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/04_AutoGluon)
- - H2O（H2O.ai）
- - PyCaret
- - AutoKeras
- - Ludwig（Uber）
- - Neural Network Intelligence（Microsoft）
- - Model Search（Google）
+ - [H2O（H2O.ai）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/05_H2O)
+ - [PyCaret](https://github.com/aiq2020-tw/automl-notebooks/tree/main/06_PyCaret)
+ - [AutoKeras](https://github.com/aiq2020-tw/automl-notebooks/tree/main/07_AutoKeras)
+ - [Ludwig（Uber）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/08_Ludwig)
+ - [Neural Network Intelligence（Microsoft）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/09_NNI)
+ - [Model Search（Google）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/10_Model_Search)
 
 ![logos](logos.png) 
 

@@ -14,7 +14,7 @@
  - [AutoKeras](https://github.com/aiq2020-tw/automl-notebooks/tree/main/07_AutoKeras)
  - [Ludwig（Uber）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/08_Ludwig)
  - [Neural Network Intelligence（Microsoft）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/09_NNI)
- - [Model Search（Google）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/10_Model_Search)
+ - [Model Search（Google）](https://github.com/aiq2020-tw/automl-notebooks/tree/main/10_Model%20Search)
 
 ![logos](logos.png) 
 

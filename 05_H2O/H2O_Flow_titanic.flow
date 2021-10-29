@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "md",
+      "input": "# 学習用データのロード"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"./train.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs://content/./train.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs://content/./train.csv\"]\n  destination_frame: \"train.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 12\n  single_quotes: false\n  column_names: [\"PassengerId\",\"Survived\",\"Pclass\",\"Name\",\"Sex\",\"Age\",\"SibSp\",\"Parch\",\"Ticket\",\"Fare\",\"Cabin\",\"Embarked\"]\n  column_types: [\"Numeric\",\"Enum\",\"Enum\",\"String\",\"Enum\",\"Numeric\",\"Numeric\",\"Numeric\",\"String\",\"Numeric\",\"String\",\"Enum\"]\n  delete_on_done: false\n  check_header: 1\n  chunk_size: 4194304"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"train.hex\""
+    },
+    {
+      "type": "md",
+      "input": "# モデルの学習"
+    },
+    {
+      "type": "cs",
+      "input": "assist runAutoML, training_frame: \"train.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "runAutoML {\"input_spec\":{\"training_frame\":\"train.hex\",\"response_column\":\"Survived\",\"ignored_columns\":[\"PassengerId\",\"Name\"],\"sort_metric\":\"AUTO\"},\"build_control\":{\"nfolds\":5,\"balance_classes\":false,\"stopping_criteria\":{\"seed\":42,\"max_models\":0,\"max_runtime_secs\":180,\"max_runtime_secs_per_model\":0,\"stopping_rounds\":3,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":-1},\"keep_cross_validation_predictions\":true,\"keep_cross_validation_models\":true,\"keep_cross_validation_fold_assignment\":false},\"build_models\":{\"exclude_algos\":[],\"exploitation_ratio\":0,\"monotone_constraints\":[]}}, 'exec'"
+    },
+    {
+      "type": "cs",
+      "input": "# 以下のコードは、修正後に実行\n# ダブルクォーテーションで囲まれた箇所を上書きする形で上記JobのKeyをコピーアンドペースト\ngetLeaderboard \"AutoML_2_20211002_101822@@Survived\""
+    },
+    {
+      "type": "cs",
+      "input": "# 以下のコードは、修正後に実行\n# ダブルクォーテーションで囲まれた箇所を上書きする形で上記LeaderboardのMODELSから最も精度が高いモデルのmodel_idをコピーアンドペースト\ngetModel \"GBM_grid_1_AutoML_2_20211002_101822_model_9\""
+    },
+    {
+      "type": "md",
+      "input": "# 予測用データのロード"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"./test.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs://content/./test.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs://content/./test.csv\"]\n  destination_frame: \"test.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 11\n  single_quotes: false\n  column_names: [\"PassengerId\",\"Pclass\",\"Name\",\"Sex\",\"Age\",\"SibSp\",\"Parch\",\"Ticket\",\"Fare\",\"Cabin\",\"Embarked\"]\n  column_types: [\"Numeric\",\"Enum\",\"String\",\"Enum\",\"Numeric\",\"Numeric\",\"Numeric\",\"String\",\"Numeric\",\"String\",\"Enum\"]\n  delete_on_done: false\n  check_header: 1\n  chunk_size: 4194304"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"test.hex\""
+    },
+    {
+      "type": "md",
+      "input": "# 予測"
+    },
+    {
+      "type": "cs",
+      "input": "predict frame: \"test.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "# 以下のコードは、修正後に実行\n# 「predict model」の値を上書きする形でLeaderboardのMODELSから最も精度が高いモデルのmodel_idをコピーアンドペースト\npredict model: \"GBM_grid_1_AutoML_2_20211002_101822_model_9\", frame: \"test.hex\", predictions_frame: \"prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\""
+    },
+    {
+      "type": "cs",
+      "input": "bindFrames \"combined-prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\", [ \"prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\", \"test.hex\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"combined-prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\""
+    },
+    {
+      "type": "md",
+      "input": "# 予測結果の出力"
+    },
+    {
+      "type": "cs",
+      "input": "exportFrame \"combined-prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\""
+    },
+    {
+      "type": "cs",
+      "input": "exportFrame \"combined-prediction-a567d5b6-21e0-4da3-8ea1-bdf11340cf92\", \"./submission.csv\", overwrite: true"
+    },
+    {
+      "type": "md",
+      "input": "以上で、Flow上でのAutoMLは終了です。"
+    }
+  ]
+}

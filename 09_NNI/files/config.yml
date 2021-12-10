@@ -1,0 +1,28 @@
+authorName: default
+experimentName: titanic
+trialConcurrency: 1
+maxExecDuration: 1h
+maxTrialNum: 10
+# choice: local, remote
+trainingServicePlatform: local
+searchSpacePath: search_space.json
+# choice: true, false
+useAnnotation: false
+
+assessor:
+  builtinAssessorName: Medianstop
+  classArgs:
+    optimize_mode: maximize
+    start_step: 5
+
+tuner:
+  #choice: TPE, Random, Anneal, Evolution
+  builtinTunerName: TPE
+  classArgs:
+    #choice: maximize, minimize
+    optimize_mode: maximize
+
+trial:
+  command: python3 nni_xgb.py
+  codeDir: .
+  gpuNum: 0

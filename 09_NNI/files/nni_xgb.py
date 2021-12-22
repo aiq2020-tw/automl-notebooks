@@ -2,18 +2,17 @@
 import nni
 import pandas as pd
 import xgboost as xgb
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import KFold, cross_val_score
+from sklearn.preprocessing import LabelEncoder
+
 
 def load_data(train_file_path):
     """
     データの前処理を行う関数
-
     Parameters
     ----------
     train_file_path : str
         学習用データのファイルパス
-
     Returns
     -------
     X_train : pd.DataFrame
@@ -31,10 +30,10 @@ def load_data(train_file_path):
         X_train[col] = le.transform(X_train[col])
     return X_train, y_train
 
+
 def get_default_parameters():
     """
     デフォルトのパラメーターを取得する関数
-
     Returns
     -------
     params : dict
@@ -55,15 +54,14 @@ def get_default_parameters():
     }
     return params
 
+
 def get_model(PARAMS):
     """
     モデルを入手する関数
-
     Parameters
     ----------
     PARAMS : dict
         パラメーター
-
     Returns
     -------
     model : xgboost.sklearn.XGBClassifier
@@ -76,10 +74,10 @@ def get_model(PARAMS):
     model.colsample_btree = PARAMS.get("colsample_btree")
     return model
 
+
 def run(X_train, y_train, model):
     """
     モデルを実行する関数
-
     Parameters
     ----------
     X_train : pd.DataFrame
@@ -94,6 +92,7 @@ def run(X_train, y_train, model):
     score = scores.mean()
     # Configurationの結果を報告する
     nni.report_final_result(score)
+
 
 if __name__ == '__main__':
     X_train_sub, y_train_sub = load_data('nni/train.csv')

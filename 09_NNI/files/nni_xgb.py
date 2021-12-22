@@ -39,7 +39,6 @@ def get_default_parameters():
     params : dict
         デフォルトのパラメーター
     """
-
     params = {
         'learning_rate': 0.02,
         'n_estimators': 2000,

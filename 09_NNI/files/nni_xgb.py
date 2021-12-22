@@ -18,7 +18,7 @@ def load_data(train_file_path):
     -------
     X_train : pd.DataFrame
         学習用のデータ
-    y_train : pd.DataFrame
+    y_train : Series
         学習用の正解ラベル
     """
     train_df = pd.read_csv(train_file_path)

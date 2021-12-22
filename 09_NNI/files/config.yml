@@ -9,12 +9,6 @@ searchSpacePath: search_space.json
 # choice: true, false
 useAnnotation: false
 
-assessor:
-  builtinAssessorName: Medianstop
-  classArgs:
-    optimize_mode: maximize
-    start_step: 5
-
 tuner:
   #choice: TPE, Random, Anneal, Evolution
   builtinTunerName: TPE

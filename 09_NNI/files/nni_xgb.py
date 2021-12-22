@@ -84,7 +84,7 @@ def run(X_train, y_train, model):
     ----------
     X_train : pd.DataFrame
         学習用のデータ
-    y_train : pd.DataFrame
+    y_train : Series
         学習用の正解ラベル
     model : xgboost.sklearn.XGBClassifier
         学習に使用するモデル

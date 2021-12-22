@@ -1,3 +1,4 @@
+# NNIをインポートする
 import nni
 import pandas as pd
 import xgboost as xgb
@@ -91,10 +92,12 @@ def run(X_train, y_train, model):
     scores = cross_val_score(model, X_train, y_train,
                              scoring='accuracy', cv=KFold(n_splits=5))
     score = scores.mean()
+    # Configurationの結果を報告する
     nni.report_final_result(score)
 
 if __name__ == '__main__':
     X_train_sub, y_train_sub = load_data('train.csv')
+    # TunerからConfigurationを取得する
     RECEIVED_PARAMS = nni.get_next_parameter()
     PARAMS = get_default_parameters()
     PARAMS.update(RECEIVED_PARAMS)

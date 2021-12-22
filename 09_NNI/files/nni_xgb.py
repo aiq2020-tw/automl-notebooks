@@ -33,12 +33,12 @@ def load_data(train_file_path):
 
 def get_default_parameters():
     """
-    デフォルトのパラメータを取得する関数
+    デフォルトのパラメーターを取得する関数
 
     Returns
     -------
     params : dict
-        デフォルトのパラメータ
+        デフォルトのパラメーター
     """
 
     params = {
@@ -62,7 +62,7 @@ def get_model(PARAMS):
     Parameters
     ----------
     PARAMS : dict
-        パラメータ
+        パラメーター
 
     Returns
     -------
@@ -84,7 +84,7 @@ def run(X_train, y_train, model):
     ----------
     X_train : pd.DataFrame
         学習用のデータ
-    y_train : Series
+    y_train : pd.DataFrame
         学習用の正解ラベル
     model : xgboost.sklearn.XGBClassifier
         学習に使用するモデル
@@ -96,7 +96,7 @@ def run(X_train, y_train, model):
     nni.report_final_result(score)
 
 if __name__ == '__main__':
-    X_train_sub, y_train_sub = load_data('train.csv')
+    X_train_sub, y_train_sub = load_data('nni/train.csv')
     # TunerからConfigurationを取得する
     RECEIVED_PARAMS = nni.get_next_parameter()
     PARAMS = get_default_parameters()

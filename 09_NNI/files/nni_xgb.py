@@ -94,7 +94,7 @@ def run(X_train, y_train, model):
 
 
 if __name__ == '__main__':
-    X_train_sub, y_train_sub = load_data('nni/train.csv')
+    X_train_sub, y_train_sub = load_data('train.csv')
     # TunerからConfigurationを取得する
     RECEIVED_PARAMS = nni.get_next_parameter()
     PARAMS = get_default_parameters()
